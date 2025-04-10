@@ -24,7 +24,7 @@ public class CarController : MonoBehaviour
         GetInput();
         HandleMotor();
         HandleSteering();
-        UpdateWheels();
+        //UpdateWheels();
     }
 
     private void GetInput() {
@@ -57,14 +57,14 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
-
+/*
     private void UpdateWheels() {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
     }
-
+*/
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {
         Vector3 pos;
         Quaternion rot; 
