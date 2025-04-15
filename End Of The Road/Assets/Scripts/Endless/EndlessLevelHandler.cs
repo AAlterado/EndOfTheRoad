@@ -45,7 +45,7 @@ public class EndlessLevelHandler : MonoBehaviour
             GameObject randomSection = GetRandomSectionFromPool();
 
             //Move it into position and set it to active
-            randomSection.transform.position = new Vector3(sectionsPool[i].transform.position.x, 0, i * sectionLength);
+            randomSection.transform.position = new Vector3(sectionsPool[i].transform.position.x, -10, i * sectionLength);
             randomSection.SetActive(true);
 
             //Set the section in the array
@@ -79,7 +79,7 @@ public class EndlessLevelHandler : MonoBehaviour
                 sections[i] = GetRandomSectionFromPool();
 
                 //Move the new section into place and active it
-                sections[i].transform.position = new Vector3(lastSectionPosition.x, 0, lastSectionPosition.z + sectionLength * sections.Length);
+                sections[i].transform.position = new Vector3(lastSectionPosition.x, -10, lastSectionPosition.z + sectionLength * sections.Length);
                 sections[i].SetActive(true);
 
             }
