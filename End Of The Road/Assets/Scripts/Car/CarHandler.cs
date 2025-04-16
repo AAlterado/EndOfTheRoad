@@ -10,6 +10,9 @@ public class CarHandler : MonoBehaviour
     [SerializeField]
     Transform gameModel;
 
+    [SerializeField]
+    MeshRenderer carMeshRenderer;
+
     //Max values
     float maxSteerVelocity = 2.0f;
     float maxForwardVelocity = 30.0f;
@@ -22,6 +25,11 @@ public class CarHandler : MonoBehaviour
     //Input
     Vector2 input = Vector2.zero;
 
+    //Emissive property
+    int _EmissionColor = Shader.PropertyToID("_EmissionColor");
+    Color emissiveColor = Color.white;
+    float emissiveColorMultiplier = 0.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +41,18 @@ public class CarHandler : MonoBehaviour
     {
         //Rotate car model when "turning"
         gameModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);
+
+        if (carMeshRenderer !=null)
+        {
+            float desiredCarEmissiveColorMultiplier = 0.0f;
+
+            if (input.y < 0)
+                desiredCarEmissiveColorMultiplier = 4.0f;
+
+            emissiveColorMultiplier = Mathf.Lerp(emissiveColorMultiplier, desiredCarEmissiveColorMultiplier, Time.deltaTime * 4);
+
+            carMeshRenderer.material.SetColor(_EmissionColor, emissiveColor * emissiveColorMultiplier);
+        }
     }
     
     private void FixedUpdate()
